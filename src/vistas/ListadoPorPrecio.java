@@ -8,6 +8,7 @@ import entidades.Producto;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,14 +16,16 @@ import javax.swing.table.DefaultTableModel;
  * @author edulo
  */
 public class ListadoPorPrecio extends javax.swing.JInternalFrame {
+
     private DefaultTableModel tp = new DefaultTableModel();
-     TreeSet <Producto> productos;
+    TreeSet<Producto> productos;
+
     /**
      * Creates new form ListadoPorPrecio
      */
     public ListadoPorPrecio(TreeSet productos) {
         initComponents();
-       
+
         tbFiltroPrecio.setModel(tp);
         this.productos = productos;
         tp.addColumn("Codigo");
@@ -30,13 +33,14 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
         tp.addColumn("Precio");
         tp.addColumn("Stock");
     }
-   public void limpiarTabla() {
+
+    public void limpiarTabla() {
         int filas = tp.getRowCount() - 1;
         for (int i = filas; i >= 0; i--) {
             tp.removeRow(i);
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -125,20 +129,32 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
 
     private void txtMaximoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaximoKeyReleased
         // TODO add your handling code here:
-        double minimo = Double.parseDouble(txtMinimo.getText());
-        double maximo = Double.parseDouble(txtMaximo.getText());
-        boolean bandera=false;
-        limpiarTabla(); 
+        double minimo;
+        double maximo;
+        try {
+            minimo = Double.parseDouble(txtMinimo.getText());
+            maximo = Double.parseDouble(txtMaximo.getText());
+        } catch (NumberFormatException e) {
+
+            minimo = 0;
+            maximo = 0;
+            txtMaximo.setText("");
+            txtMinimo.setText("");
+
+        }
+        
+        boolean bandera = false;
+        limpiarTabla();
         for (Producto p : productos) {
-            if (minimo<p.getPrecio() && maximo>p.getPrecio()) {            
-                tp.addRow(new Object[]{p.getCodigo(),p.getRubro().getNombre(),p.getPrecio(),p.getStock()}); 
-                bandera=true;
+            if (minimo <= p.getPrecio() && maximo >= p.getPrecio()) {
+                tp.addRow(new Object[]{p.getCodigo(), p.getRubro().getNombre(), p.getPrecio(), p.getStock()});
+                bandera = true;
             }
             if (!bandera) {
                 limpiarTabla();
             }
         }
-       
+
     }//GEN-LAST:event_txtMaximoKeyReleased
 
 

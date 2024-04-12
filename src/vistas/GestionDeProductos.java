@@ -335,7 +335,7 @@ private Producto auxiliar=null;
         jtDescripcion.setText("");
         jtPrecio.setText("");
         jtStock.setText("");
-        jcRubros.setSelectedIndex(-1);
+        jcRubros.setSelectedIndex(0);
         jbEliminar.setEnabled(false);
         auxiliar=null;
     }

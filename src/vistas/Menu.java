@@ -1,19 +1,76 @@
-
 package vistas;
 
 import entidades.Producto;
+import entidades.Rubro;
+import java.util.ArrayList;
 import java.util.TreeSet;
 
-
 public class Menu extends javax.swing.JFrame {
-private TreeSet<Producto> productos=new TreeSet<>();
+
+    private TreeSet<Producto> productos = new TreeSet<>();
+
     /**
      * Creates new form Menu
      */
     public Menu() {
         initComponents();
+
+        Rubro Comestible = new Rubro(1, "Comestible");
+        Rubro Limpieza = new Rubro(2, "Limpieza");
+        Rubro Perfumeria = new Rubro(3, "Perfumeria");
+
+        productos.add(new Producto(1, "Aceite de Girasol 1L", 180.0, Comestible, 50));
+        productos.add(new Producto(2, "Shampoo Sedal 400ml", 220.0, Perfumeria, 30));
+        productos.add(new Producto(3, "Detergente Ala 500ml", 150.0, Limpieza, 40));
+        productos.add(new Producto(4, "Azúcar 1kg", 100.0, Comestible, 60));
+        productos.add(new Producto(5, "Desodorante Rexona 150ml", 260.0, Perfumeria, 20));
+        productos.add(new Producto(6, "Lavandina Ayudín 1L", 100.0, Limpieza, 45));
+        productos.add(new Producto(7, "Arroz 1kg", 110.0, Comestible, 55));
+        productos.add(new Producto(8, "Crema Dental Colgate 90g", 160.0, Perfumeria, 25));
+        productos.add(new Producto(9, "Limpiador en Gel Cif 500ml", 140.0, Limpieza, 35));
+        productos.add(new Producto(10, "Fideos Spaghetti 500g", 80.0, Comestible, 70));
+        productos.add(new Producto(11, "Perfume Adidas 100ml", 900.0, Perfumeria, 15));
+        productos.add(new Producto(12, "Jabón en Barra Ala 150g", 60.0, Limpieza, 50));
+        productos.add(new Producto(13, "Leche Entera 1L", 130.0, Comestible, 40));
+        productos.add(new Producto(14, "Acondicionador Sedal 300ml", 200.0, Perfumeria, 30));
+        productos.add(new Producto(15, "Limpiahogar Mr. Músculo 500ml", 180.0, Limpieza, 35));
+        productos.add(new Producto(16, "Yogur Frutado 250g", 60.0, Comestible, 50));
+        productos.add(new Producto(17, "Jabón Líquido para Manos Palmolive 250ml", 120.0, Perfumeria, 40));
+        productos.add(new Producto(18, "Desinfectante Lysoform 500ml", 220.0, Limpieza, 30));
+        productos.add(new Producto(19, "Pan de Molde 500g", 100.0, Comestible, 60));
+        productos.add(new Producto(20, "Colonial 250g", 170.0, Perfumeria, 25));
+        productos.add(new Producto(21, "Café Molido 250g", 150.0, Comestible, 45));
+        productos.add(new Producto(22, "Jabón Líquido para Ropa Skip 1L", 280.0, Limpieza, 20));
+        productos.add(new Producto(23, "Té Negro 25 Saquitos", 90.0, Comestible, 50));
+        productos.add(new Producto(24, "Acondicionador Pantene 300ml", 220.0, Perfumeria, 30));
+        productos.add(new Producto(25, "Limpiador de Baño Vim 500ml", 170.0, Limpieza, 35));
+        productos.add(new Producto(26, "Agua Mineral 2L", 70.0, Comestible, 40));
+        productos.add(new Producto(27, "Desodorante Nivea 150ml", 240.0, Perfumeria, 25));
+        productos.add(new Producto(28, "Detergente en Polvo Cif 800g", 200.0, Limpieza, 30));
+        productos.add(new Producto(29, "Lechuga Crespa", 80.0, Comestible, 55));
+        productos.add(new Producto(30, "Crema para Manos Neutrogena 75g", 190.0, Perfumeria, 20));
+        productos.add(new Producto(31, "Limpiavidrios Glassex 500ml", 130.0, Limpieza, 40));
+        productos.add(new Producto(32, "Mermelada de Frutilla 450g", 120.0, Comestible, 35));
+        productos.add(new Producto(33, "Perfume Carolina Herrera 100ml", 1500.0, Perfumeria, 15));
+        productos.add(new Producto(34, "Pañuelos de Papel Kleenex 6 unidades", 180.0, Limpieza, 25));
+        productos.add(new Producto(35, "Queso Cremoso 200g", 200.0, Comestible, 30));
+        productos.add(new Producto(36, "Colonia Natura 100ml", 500.0, Perfumeria, 10));
+        productos.add(new Producto(37, "Desengrasante Sapolio 500ml", 150.0, Limpieza, 30));
+        productos.add(new Producto(38, "Tomate Perita por Kg", 100.0, Comestible, 45));
+        productos.add(new Producto(39, "Gel de Ducha Dove 400ml", 280.0, Perfumeria, 20));
+        productos.add(new Producto(40, "Limpia Pisos Magistral 1L", 200.0, Limpieza, 25));
+        productos.add(new Producto(41, "Mermelada de Durazno 450g", 130.0, Comestible, 35));
+        productos.add(new Producto(42, "Agua de Colonia Nenuco 200ml", 350.0, Perfumeria, 15));
+        productos.add(new Producto(43, "Desodorante de Ambientes Glade 360ml", 220.0, Limpieza, 30));
+        productos.add(new Producto(44, "Manzana Roja por Kg", 120.0, Comestible, 40));
+        productos.add(new Producto(45, "Shampoo Head & Shoulders 400ml", 250.0, Perfumeria, 25));
+        productos.add(new Producto(46, "Lavandina Off 1L", 80.0, Limpieza, 50));
+        productos.add(new Producto(47, "Batata por Kg", 90.0, Comestible, 55));
+        productos.add(new Producto(48, "Loción Corporal Nivea 400ml", 280.0, Perfumeria, 20));
+        productos.add(new Producto(49, "Insecticida Raid 300ml", 180.0, Limpieza, 35));
+        productos.add(new Producto(50, "Cebolla por Kg", 80.0, Comestible, 60));
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,11 +98,11 @@ private TreeSet<Producto> productos=new TreeSet<>();
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 1031, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 280, Short.MAX_VALUE)
+            .addGap(0, 604, Short.MAX_VALUE)
         );
 
         jmAdministracion.setText("Administración");
@@ -98,18 +155,18 @@ private TreeSet<Producto> productos=new TreeSet<>();
         // TODO add your handling code here:
         escritorio.removeAll();
         escritorio.repaint();
-        gestionDeProductos gdp=new gestionDeProductos(productos);
+        gestionDeProductos gdp = new gestionDeProductos(productos);
         gdp.setVisible(true);
         escritorio.add(gdp);
-        
-        
+
+
     }//GEN-LAST:event_jmiProductosActionPerformed
 
     private void jmiPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPrecioActionPerformed
         // TODO add your handling code here:
         escritorio.removeAll();
         escritorio.repaint();
-        ListadoPorPrecio lpp=new ListadoPorPrecio(productos);
+        ListadoPorPrecio lpp = new ListadoPorPrecio(productos);
         lpp.setVisible(true);
         escritorio.add(lpp);
     }//GEN-LAST:event_jmiPrecioActionPerformed
