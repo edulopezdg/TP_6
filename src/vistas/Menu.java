@@ -13,7 +13,7 @@ private TreeSet<Producto> productos=new TreeSet<>();
     public Menu() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,6 +69,11 @@ private TreeSet<Producto> productos=new TreeSet<>();
         jmConsultas.add(jmiNombre);
 
         jmiPrecio.setText("Por Precio");
+        jmiPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiPrecioActionPerformed(evt);
+            }
+        });
         jmConsultas.add(jmiPrecio);
 
         jmMenuGeneral.add(jmConsultas);
@@ -99,6 +104,15 @@ private TreeSet<Producto> productos=new TreeSet<>();
         
         
     }//GEN-LAST:event_jmiProductosActionPerformed
+
+    private void jmiPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPrecioActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        ListadoPorPrecio lpp=new ListadoPorPrecio(productos);
+        lpp.setVisible(true);
+        escritorio.add(lpp);
+    }//GEN-LAST:event_jmiPrecioActionPerformed
 
     /**
      * @param args the command line arguments
