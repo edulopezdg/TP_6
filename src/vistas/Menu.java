@@ -1,11 +1,14 @@
 package vistas;
 
-import entidades.Producto;
-import entidades.Rubro;
+import entidades.*;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.TreeSet;
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
 
 public class Menu extends javax.swing.JFrame {
     
@@ -15,11 +18,33 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         this.setExtendedState(this.MAXIMIZED_BOTH);//Inicializa el JFrame maximizado
-        
+                
         Rubro Comestible = new Rubro(1, "Comestible");
         Rubro Limpieza = new Rubro(2, "Limpieza");
         Rubro Perfumeria = new Rubro(3, "Perfumeria");
         
+        // Cargar la imagen de fondo
+        ImageIcon backgroundImageIcon = new ImageIcon("ruta/de/la/imagen/fondo.jpg");
+        Image backgroundImage = backgroundImageIcon.getImage();
+        escritorio.removeAll(); // Elimina todos los componentes del JDesktopPane
+
+// Crea un nuevo JPanel con la imagen de fondo
+        JPanel panelFondo = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+
+// Establece el tamaño del panel para que coincida con el escritorio
+        panelFondo.setSize(escritorio.getSize());
+
+// Agrega el panel con la imagen de fondo al JDesktopPane
+        escritorio.add(panelFondo);
+        
+        
+          
         productos.add(new Producto(1, "Aceite de Girasol 1L", 180.0, Comestible, 50));
         productos.add(new Producto(2, "Shampoo Sedal 400ml", 220.0, Perfumeria, 30));
         productos.add(new Producto(3, "Detergente Ala 500ml", 150.0, Limpieza, 40));
@@ -81,6 +106,7 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         escritorio = new javax.swing.JDesktopPane();
         jmMenuGeneral = new javax.swing.JMenuBar();
         jmAdministracion = new javax.swing.JMenu();
@@ -89,6 +115,8 @@ public class Menu extends javax.swing.JFrame {
         jmiRubro = new javax.swing.JMenuItem();
         jmiNombre = new javax.swing.JMenuItem();
         jmiPrecio = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -103,11 +131,17 @@ public class Menu extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 604, Short.MAX_VALUE)
+            .addGap(0, 588, Short.MAX_VALUE)
         );
 
+        jmMenuGeneral.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jmMenuGeneral.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
+
         jmAdministracion.setBorder(new javax.swing.border.MatteBorder(null));
+        jmAdministracion.setIcon(new javax.swing.ImageIcon("C:\\Users\\river\\Documents\\GitHub\\TP_6\\src\\iconos\\img-administracion.png")); // NOI18N
         jmAdministracion.setText("Administración");
+        jmAdministracion.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        jmAdministracion.setIconTextGap(20);
 
         jmiProductos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmiProductos.setText("Productos");
@@ -120,7 +154,11 @@ public class Menu extends javax.swing.JFrame {
 
         jmMenuGeneral.add(jmAdministracion);
 
+        jmConsultas.setIcon(new javax.swing.ImageIcon("C:\\Users\\river\\Documents\\GitHub\\TP_6\\src\\iconos\\img-consultas.png")); // NOI18N
         jmConsultas.setText("Consultas");
+        jmConsultas.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        jmConsultas.setIconTextGap(20);
+        jmConsultas.setInheritsPopupMenu(true);
 
         jmiRubro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmiRubro.setText("Por Rubro");
@@ -171,7 +209,7 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         escritorio.removeAll();
         escritorio.repaint();
-        gestionDeProductos gdp = new gestionDeProductos(productos);
+        GestionDeProductos gdp = new GestionDeProductos(productos);
         gdp.setVisible(true);
         escritorio.add(gdp);
         
@@ -259,10 +297,12 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu jmAdministracion;
     private javax.swing.JMenu jmConsultas;
     private javax.swing.JMenuBar jmMenuGeneral;
