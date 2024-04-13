@@ -63,7 +63,7 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
         jLabel2.setText("Elija rubro: ");
 
-        cbRubros.setFont(new java.awt.Font("Magneto", 1, 12)); // NOI18N
+        cbRubros.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
         cbRubros.setSelectedIndex(-1);
         cbRubros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

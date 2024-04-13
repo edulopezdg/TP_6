@@ -12,40 +12,20 @@ import javax.swing.JPanel;
 
 
 public class Menu extends javax.swing.JFrame {
-    
+    FondoPanel fondo = new FondoPanel();
     private TreeSet<Producto> productos = new TreeSet<>();
 
    
     public Menu() {
         initComponents();
-        this.setExtendedState(this.MAXIMIZED_BOTH);//Inicializa el JFrame maximizado
-                
+        //this.setExtendedState(this.MAXIMIZED_BOTH);//Inicializa el JFrame maximizado
+        this.setSize(1080, 720);
+        this.setContentPane(fondo);
+        
         Rubro Comestible = new Rubro(1, "Comestible");
         Rubro Limpieza = new Rubro(2, "Limpieza");
         Rubro Perfumeria = new Rubro(3, "Perfumeria");
-        
-//        // Cargar la imagen de fondo
-//        ImageIcon backgroundImageIcon = new ImageIcon("ruta/de/la/imagen/fondo.jpg");
-//        Image backgroundImage = backgroundImageIcon.getImage();
-//        escritorio.removeAll(); // Elimina todos los componentes del JDesktopPane
-
-//// Crea un nuevo JPanel con la imagen de fondo
-//        JPanel panelFondo = new JPanel() {
-//            @Override
-//            protected void paintComponent(Graphics g) {
-//                super.paintComponent(g);
-//                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
-//            }
-//        };
-//
-//// Establece el tamaño del panel para que coincida con el escritorio
-//        panelFondo.setSize(escritorio.getSize());
-//
-//// Agrega el panel con la imagen de fondo al JDesktopPane
-//        escritorio.add(panelFondo);
-        
-        
-          
+    
         productos.add(new Producto(1, "Aceite de Girasol 1L", 180.0, Comestible, 50));
         productos.add(new Producto(2, "Shampoo Sedal 400ml", 220.0, Perfumeria, 30));
         productos.add(new Producto(3, "Detergente Ala 500ml", 150.0, Limpieza, 40));
@@ -122,6 +102,7 @@ public class Menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(500, 400));
+        setResizable(false);
         setSize(new java.awt.Dimension(500, 400));
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
@@ -139,7 +120,7 @@ public class Menu extends javax.swing.JFrame {
         jmMenuGeneral.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
 
         jmAdministracion.setBorder(new javax.swing.border.MatteBorder(null));
-        jmAdministracion.setIcon(new javax.swing.ImageIcon("C:\\Users\\river\\Documents\\GitHub\\TP_6\\src\\iconos\\img-administracion.png")); // NOI18N
+        jmAdministracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/img-administracion.png"))); // NOI18N
         jmAdministracion.setText("Administración");
         jmAdministracion.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
         jmAdministracion.setIconTextGap(20);
@@ -155,7 +136,7 @@ public class Menu extends javax.swing.JFrame {
 
         jmMenuGeneral.add(jmAdministracion);
 
-        jmConsultas.setIcon(new javax.swing.ImageIcon("C:\\Users\\river\\Documents\\GitHub\\TP_6\\src\\iconos\\img-consultas.png")); // NOI18N
+        jmConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/img-consultas.png"))); // NOI18N
         jmConsultas.setText("Consultas");
         jmConsultas.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
         jmConsultas.setIconTextGap(20);
@@ -204,15 +185,16 @@ public class Menu extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmiProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiProductosActionPerformed
         // TODO add your handling code here:
-        escritorio.removeAll();
-        escritorio.repaint();
+        fondo.removeAll();
+        fondo.repaint();
         GestionDeProductos gdp = new GestionDeProductos(productos);
         gdp.setVisible(true);
-        escritorio.add(gdp);
+        fondo.add(gdp);
         
         centrarVentana(gdp);
         
@@ -221,46 +203,46 @@ public class Menu extends javax.swing.JFrame {
 
     private void jmiPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPrecioActionPerformed
         // TODO add your handling code here:
-        escritorio.removeAll();
-        escritorio.repaint();
+        fondo.removeAll();
+        fondo.repaint();
         ListadoPorPrecio lpp = new ListadoPorPrecio(productos);
         lpp.setVisible(true);
-        escritorio.add(lpp);
+        fondo.add(lpp);
         
         centrarVentana(lpp);
     }//GEN-LAST:event_jmiPrecioActionPerformed
 
     private void jmiRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRubroActionPerformed
         // TODO add your handling code here:
-        escritorio.removeAll();
-        escritorio.repaint();
+        fondo.removeAll();
+        fondo.repaint();
         ListadoPorRubro lpr = new ListadoPorRubro(productos);
         lpr.setVisible(true);
-        escritorio.add(lpr);
+        fondo.add(lpr);
         
         centrarVentana(lpr);
     }//GEN-LAST:event_jmiRubroActionPerformed
 
     private void jmiNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiNombreActionPerformed
         // TODO add your handling code here:
-         escritorio.removeAll();
-        escritorio.repaint();
+         fondo.removeAll();
+        fondo.repaint();
         ListadoPorNombre lpn = new ListadoPorNombre(productos);
         lpn.setVisible(true);
-        escritorio.add(lpn);
+        fondo.add(lpn);
         
         centrarVentana(lpn);
     }//GEN-LAST:event_jmiNombreActionPerformed
     
     //Este metodo centrara las ventanas
     public void centrarVentana(JInternalFrame frame){
-        int x = (escritorio.getWidth() / 2) - frame.getWidth() /2;
-        int y = (escritorio.getHeight()/ 2) - frame.getHeight() /2;
+        int x = (fondo.getWidth() / 2) - frame.getWidth() /2;
+        int y = (fondo.getHeight()/ 2) - frame.getHeight() /2;
         
         if (frame.isShowing()) {
             frame.setLocation(x, y);
         } else {
-            escritorio.add(frame);
+            fondo.add(frame);
             frame.setLocation(x, y);
             frame.show();
         }
@@ -312,4 +294,19 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiProductos;
     private javax.swing.JMenuItem jmiRubro;
     // End of variables declaration//GEN-END:variables
+
+    class FondoPanel extends JPanel {
+        
+        private Image imagen;
+        
+        @Override
+        public void paint(Graphics g) {
+            imagen = new ImageIcon(getClass().getResource("/iconos/img-fondo-dark.jpg")).getImage();
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+            setOpaque(false);
+            
+            super.paint(g);
+        }
+    }
+
 }
