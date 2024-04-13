@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.TreeSet;
 
 public class Menu extends javax.swing.JFrame {
-
+    
     private TreeSet<Producto> productos = new TreeSet<>();
 
     /**
@@ -14,11 +14,11 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
-
+        
         Rubro Comestible = new Rubro(1, "Comestible");
         Rubro Limpieza = new Rubro(2, "Limpieza");
         Rubro Perfumeria = new Rubro(3, "Perfumeria");
-
+        
         productos.add(new Producto(1, "Aceite de Girasol 1L", 180.0, Comestible, 50));
         productos.add(new Producto(2, "Shampoo Sedal 400ml", 220.0, Perfumeria, 30));
         productos.add(new Producto(3, "Detergente Ala 500ml", 150.0, Limpieza, 40));
@@ -120,6 +120,11 @@ public class Menu extends javax.swing.JFrame {
         jmConsultas.setText("Consultas");
 
         jmiRubro.setText("Por Rubro");
+        jmiRubro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiRubroActionPerformed(evt);
+            }
+        });
         jmConsultas.add(jmiRubro);
 
         jmiNombre.setText("Por Nombre");
@@ -158,7 +163,7 @@ public class Menu extends javax.swing.JFrame {
         gestionDeProductos gdp = new gestionDeProductos(productos);
         gdp.setVisible(true);
         escritorio.add(gdp);
-
+        
 
     }//GEN-LAST:event_jmiProductosActionPerformed
 
@@ -170,6 +175,15 @@ public class Menu extends javax.swing.JFrame {
         lpp.setVisible(true);
         escritorio.add(lpp);
     }//GEN-LAST:event_jmiPrecioActionPerformed
+
+    private void jmiRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRubroActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        ListadoPorRubro lpr = new ListadoPorRubro(productos);
+        lpr.setVisible(true);
+        escritorio.add(lpr);
+    }//GEN-LAST:event_jmiRubroActionPerformed
 
     /**
      * @param args the command line arguments
