@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 
+
 public class Menu extends javax.swing.JFrame {
     
     private TreeSet<Producto> productos = new TreeSet<>();
@@ -23,25 +24,25 @@ public class Menu extends javax.swing.JFrame {
         Rubro Limpieza = new Rubro(2, "Limpieza");
         Rubro Perfumeria = new Rubro(3, "Perfumeria");
         
-        // Cargar la imagen de fondo
-        ImageIcon backgroundImageIcon = new ImageIcon("ruta/de/la/imagen/fondo.jpg");
-        Image backgroundImage = backgroundImageIcon.getImage();
-        escritorio.removeAll(); // Elimina todos los componentes del JDesktopPane
+//        // Cargar la imagen de fondo
+//        ImageIcon backgroundImageIcon = new ImageIcon("ruta/de/la/imagen/fondo.jpg");
+//        Image backgroundImage = backgroundImageIcon.getImage();
+//        escritorio.removeAll(); // Elimina todos los componentes del JDesktopPane
 
-// Crea un nuevo JPanel con la imagen de fondo
-        JPanel panelFondo = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
-            }
-        };
-
-// Establece el tamaño del panel para que coincida con el escritorio
-        panelFondo.setSize(escritorio.getSize());
-
-// Agrega el panel con la imagen de fondo al JDesktopPane
-        escritorio.add(panelFondo);
+//// Crea un nuevo JPanel con la imagen de fondo
+//        JPanel panelFondo = new JPanel() {
+//            @Override
+//            protected void paintComponent(Graphics g) {
+//                super.paintComponent(g);
+//                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+//            }
+//        };
+//
+//// Establece el tamaño del panel para que coincida con el escritorio
+//        panelFondo.setSize(escritorio.getSize());
+//
+//// Agrega el panel con la imagen de fondo al JDesktopPane
+//        escritorio.add(panelFondo);
         
         
           
