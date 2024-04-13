@@ -4,17 +4,30 @@
  */
 package vistas;
 
+import entidades.Producto;
+import java.util.TreeSet;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author edulo
  */
 public class ListadoPorNombre extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form ListadoPorNombre
-     */
-    public ListadoPorNombre() {
+    //Atributos
+    TreeSet<Producto> productos = new TreeSet<>();
+    private DefaultTableModel tn = new DefaultTableModel();
+    
+    public ListadoPorNombre( TreeSet<Producto> productos ) {
         initComponents();
+        this.productos = productos;
+        
+        tbFiltroNombre.setModel(tn);
+        tn.addColumn("Codigo");
+        tn.addColumn("Descripcion");
+        tn.addColumn("Precio");
+        tn.addColumn("Stock");
+        
     }
 
     /**
@@ -37,6 +50,12 @@ public class ListadoPorNombre extends javax.swing.JInternalFrame {
 
         lblNombre.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         lblNombre.setText("Escriba los primeros caracteres");
+
+        txtBusquedaNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBusquedaNombreKeyReleased(evt);
+            }
+        });
 
         tbFiltroNombre.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -83,6 +102,26 @@ public class ListadoPorNombre extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtBusquedaNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaNombreKeyReleased
+        // TODO add your handling code here:
+        limpiarTabla();
+        String txt = txtBusquedaNombre.getText().toLowerCase();
+        for (Producto p : productos) {
+            if ( p.getDescripcion().toLowerCase().startsWith(txt)) {
+                 tn.addRow(new Object[]{p.getCodigo(), p.getDescripcion(), p.getPrecio(), p.getStock()});
+            }
+        }
+        
+        
+    }//GEN-LAST:event_txtBusquedaNombreKeyReleased
+
+    
+    public void limpiarTabla() {
+        int filas = tn.getRowCount() - 1;
+        for (int i = filas; i >= 0; i--) {
+            tn.removeRow(i);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

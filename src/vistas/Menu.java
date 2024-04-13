@@ -128,6 +128,11 @@ public class Menu extends javax.swing.JFrame {
         jmConsultas.add(jmiRubro);
 
         jmiNombre.setText("Por Nombre");
+        jmiNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiNombreActionPerformed(evt);
+            }
+        });
         jmConsultas.add(jmiNombre);
 
         jmiPrecio.setText("Por Precio");
@@ -184,6 +189,15 @@ public class Menu extends javax.swing.JFrame {
         lpr.setVisible(true);
         escritorio.add(lpr);
     }//GEN-LAST:event_jmiRubroActionPerformed
+
+    private void jmiNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiNombreActionPerformed
+        // TODO add your handling code here:
+         escritorio.removeAll();
+        escritorio.repaint();
+        ListadoPorNombre lpn = new ListadoPorNombre(productos);
+        lpn.setVisible(true);
+        escritorio.add(lpn);
+    }//GEN-LAST:event_jmiNombreActionPerformed
 
     /**
      * @param args the command line arguments

@@ -147,7 +147,7 @@ public class ListadoPorPrecio extends javax.swing.JInternalFrame {
         limpiarTabla();
         for (Producto p : productos) {
             if (minimo <= p.getPrecio() && maximo >= p.getPrecio()) {
-                tp.addRow(new Object[]{p.getCodigo(), p.getRubro().getNombre(), p.getPrecio(), p.getStock()});
+                tp.addRow(new Object[]{p.getCodigo(), p.getDescripcion(), p.getPrecio(), p.getStock()});
                 bandera = true;
             }
             if (!bandera) {
