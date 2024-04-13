@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 public class ListadoPorRubro extends javax.swing.JInternalFrame {
 
     private TreeSet<Producto> productos = new TreeSet<>();
-    
+        Rubro seleccion = new Rubro(4, "Seleccione uno");
     
     private DefaultTableModel tr = new DefaultTableModel();
     
@@ -21,6 +21,9 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
         tr.addColumn("Descripcion");
         tr.addColumn("Precio");
         tr.addColumn("Stock");
+        
+        
+        
 
     }
 
@@ -29,11 +32,12 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
         Rubro comestible = new Rubro(1, "Comestible");
         Rubro limpieza = new Rubro(2, "Limpieza");
         Rubro perfumeria = new Rubro(3, "Perfumeria");
-
+        
+        cbRubros.addItem(seleccion);
         cbRubros.addItem(comestible);
         cbRubros.addItem(limpieza);
         cbRubros.addItem(perfumeria);
-
+        
     }
 
     /**
@@ -56,12 +60,14 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
         lblFiltroRubro.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         lblFiltroRubro.setText("Listado de productos por rubro");
 
+        jLabel2.setFont(new java.awt.Font("Montserrat", 0, 18)); // NOI18N
         jLabel2.setText("Elija rubro: ");
 
         cbRubros.setFont(new java.awt.Font("Magneto", 1, 12)); // NOI18N
-        cbRubros.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbRubrosItemStateChanged(evt);
+        cbRubros.setSelectedIndex(-1);
+        cbRubros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbRubrosActionPerformed(evt);
             }
         });
 
@@ -83,20 +89,19 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cbRubros, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addGap(66, 66, 66)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cbRubros, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(248, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(lblFiltroRubro)
                 .addGap(107, 107, 107))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,12 +113,26 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(cbRubros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cbRubrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRubrosActionPerformed
+        // TODO add your handling code here:
+        limpiarTabla();      
+        
+        for (Producto producto : productos) {
+            if (cbRubros.getSelectedItem().toString().equals(producto.getRubro().getNombre())) {
+                 tr.addRow(new Object[]{producto.getCodigo(), producto.getDescripcion(), producto.getPrecio(), producto.getStock()});
+                 cbRubros.removeItem(seleccion);
+            }
+            
+        }
+      
+    }//GEN-LAST:event_cbRubrosActionPerformed
 
     public void limpiarTabla() {
         int filas = tr.getRowCount() - 1;
@@ -124,22 +143,6 @@ public class ListadoPorRubro extends javax.swing.JInternalFrame {
     
     
     
-    private void cbRubrosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbRubrosItemStateChanged
-        // TODO add your handling code here:
-        limpiarTabla();
-        
-        
-        for (Producto producto : productos) {
-            if (cbRubros.getSelectedItem().toString().equals(producto.getRubro().getNombre())) {
-                 tr.addRow(new Object[]{producto.getCodigo(), producto.getRubro().getNombre(), producto.getPrecio(), producto.getStock()});
-            }
-            
-        }
-        
-        
-        
-    }//GEN-LAST:event_cbRubrosItemStateChanged
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Rubro> cbRubros;

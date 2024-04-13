@@ -2,18 +2,19 @@ package vistas;
 
 import entidades.Producto;
 import entidades.Rubro;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.TreeSet;
+import javax.swing.JInternalFrame;
 
 public class Menu extends javax.swing.JFrame {
     
     private TreeSet<Producto> productos = new TreeSet<>();
 
-    /**
-     * Creates new form Menu
-     */
+   
     public Menu() {
         initComponents();
+        this.setExtendedState(this.MAXIMIZED_BOTH);//Inicializa el JFrame maximizado
         
         Rubro Comestible = new Rubro(1, "Comestible");
         Rubro Limpieza = new Rubro(2, "Limpieza");
@@ -105,8 +106,10 @@ public class Menu extends javax.swing.JFrame {
             .addGap(0, 604, Short.MAX_VALUE)
         );
 
+        jmAdministracion.setBorder(new javax.swing.border.MatteBorder(null));
         jmAdministracion.setText("Administración");
 
+        jmiProductos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmiProductos.setText("Productos");
         jmiProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,6 +122,7 @@ public class Menu extends javax.swing.JFrame {
 
         jmConsultas.setText("Consultas");
 
+        jmiRubro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmiRubro.setText("Por Rubro");
         jmiRubro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +131,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jmConsultas.add(jmiRubro);
 
+        jmiNombre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmiNombre.setText("Por Nombre");
         jmiNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,6 +140,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jmConsultas.add(jmiNombre);
 
+        jmiPrecio.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmiPrecio.setText("Por Precio");
         jmiPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,6 +175,8 @@ public class Menu extends javax.swing.JFrame {
         gdp.setVisible(true);
         escritorio.add(gdp);
         
+        centrarVentana(gdp);
+        
 
     }//GEN-LAST:event_jmiProductosActionPerformed
 
@@ -179,6 +187,8 @@ public class Menu extends javax.swing.JFrame {
         ListadoPorPrecio lpp = new ListadoPorPrecio(productos);
         lpp.setVisible(true);
         escritorio.add(lpp);
+        
+        centrarVentana(lpp);
     }//GEN-LAST:event_jmiPrecioActionPerformed
 
     private void jmiRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRubroActionPerformed
@@ -188,6 +198,8 @@ public class Menu extends javax.swing.JFrame {
         ListadoPorRubro lpr = new ListadoPorRubro(productos);
         lpr.setVisible(true);
         escritorio.add(lpr);
+        
+        centrarVentana(lpr);
     }//GEN-LAST:event_jmiRubroActionPerformed
 
     private void jmiNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiNombreActionPerformed
@@ -197,11 +209,25 @@ public class Menu extends javax.swing.JFrame {
         ListadoPorNombre lpn = new ListadoPorNombre(productos);
         lpn.setVisible(true);
         escritorio.add(lpn);
+        
+        centrarVentana(lpn);
     }//GEN-LAST:event_jmiNombreActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
+    
+    //Este metodo centrara las ventanas
+    public void centrarVentana(JInternalFrame frame){
+        int x = (escritorio.getWidth() / 2) - frame.getWidth() /2;
+        int y = (escritorio.getHeight()/ 2) - frame.getHeight() /2;
+        
+        if (frame.isShowing()) {
+            frame.setLocation(x, y);
+        } else {
+            escritorio.add(frame);
+            frame.setLocation(x, y);
+            frame.show();
+        }
+    }
+    
+    //Metodo Main
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -232,6 +258,7 @@ public class Menu extends javax.swing.JFrame {
                 new Menu().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
